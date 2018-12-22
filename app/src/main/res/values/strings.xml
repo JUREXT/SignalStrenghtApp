@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Signal Strength App Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="reset_and_bye">Reset</string>
+    <string name="strength">Signal Strength</string>
+    <string name="rounded">Rounded</string>
+    <string name="sharp">Sharp</string>
+    <string name="style">Style</string>
+    <string name="drag_for_strength">Drag for strength</string>
+
+
+
+</resources>
