@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private SignalStrength signal;
     private Switch aSwitch;
     private SeekBar seekBar;
-    private TextView textViewSpica, textViewOkroglo;
+    private TextView textViewSharp, textViewRound, progressTv;
+    private static final String PRO = " %";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         signal = (SignalStrength) findViewById(R.id.signal);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        textViewOkroglo = (TextView) findViewById(R.id.textViewOkroglo);
-        textViewSpica = (TextView) findViewById(R.id.textViewSpica);
+        textViewRound = (TextView) findViewById(R.id.textViewRound);
+        textViewSharp = (TextView) findViewById(R.id.textViewSharp);
+        progressTv = (TextView) findViewById(R.id.textView_p);
 
         aSwitch = (Switch) findViewById(R.id.switch1);
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -40,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     signal.setTheme(SignalStrength.Theme.ROUNDED);
-                    textViewOkroglo.setVisibility(View.VISIBLE);
-                    textViewSpica.setVisibility(View.GONE);
+                    textViewRound.setVisibility(View.VISIBLE);
+                    textViewSharp.setVisibility(View.GONE);
                 }else {
                     signal.setTheme(SignalStrength.Theme.SHARP);
-                    textViewOkroglo.setVisibility(View.GONE);
-                    textViewSpica.setVisibility(View.VISIBLE);
+                    textViewRound.setVisibility(View.GONE);
+                    textViewSharp.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 signal.setSignalLevel(progress);
+                progressTv.setText(Integer.toString(progress)+PRO);
             }
 
             @Override
@@ -74,19 +77,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        signal.setSignalLevel(10);
-        seekBar.setProgress(10);
+
+        int val = 10;
+        signal.setSignalLevel(val);
+        seekBar.setProgress(val);
+        progressTv.setText(Integer.toString(val)+PRO);
     }
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            signal.setSignalLevel(0);
-            seekBar.setProgress(0);
+            int val = 0;
+            signal.setSignalLevel(val);
+            seekBar.setProgress(val);
+            progressTv.setText(Integer.toString(val)+PRO);
             aSwitch.setChecked(false);
-            textViewOkroglo.setVisibility(View.VISIBLE);
-            textViewSpica.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this, "Bye", Toast.LENGTH_SHORT).show();
+            textViewRound.setVisibility(View.VISIBLE);
+            textViewSharp.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, "Reset Done!", Toast.LENGTH_SHORT).show();
         }};
 
     @Override
@@ -110,7 +118,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_exit_app) {
+            finish();
             return true;
         }
 

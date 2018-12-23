@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/textViewOkroglo"
+        android:id="@+id/textViewRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.36" />
 
     <TextView
-        android:id="@+id/textViewSpica"
+        android:id="@+id/textViewSharp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -90,7 +90,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/sharp"
         app:layout_constraintBottom_toTopOf="@+id/switch1"
-        app:layout_constraintEnd_toStartOf="@+id/textViewOkroglo"
+        app:layout_constraintEnd_toStartOf="@+id/textViewRound"
         app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="@+id/switch1" />
 
@@ -105,6 +105,24 @@
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
         app:layout_constraintStart_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+    <TextView
+        android:id="@+id/textView_p"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/signal"
+        app:layout_constraintEnd_toEndOf="@+id/signal"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="@+id/signal"
+        app:layout_constraintTop_toTopOf="@+id/signal"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </android.support.constraint.ConstraintLayout>
