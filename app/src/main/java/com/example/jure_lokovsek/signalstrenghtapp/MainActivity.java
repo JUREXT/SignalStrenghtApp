@@ -18,11 +18,10 @@ import eo.view.signalstrength.SignalStrength;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SignalStrength signal;
-    private Switch aSwitch;
-    private SeekBar seekBar;
-    private TextView textViewSharp, textViewRound, progressTv;
-    private static final String PRO = " %";
+    private SignalStrength mSignal;
+    private Switch mSwitch;
+    private SeekBar mSeekBar;
+    private TextView mTextViewSharp, mTextViewRound, mProgressTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +29,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        signal = (SignalStrength) findViewById(R.id.signal);
+        mSignal = (SignalStrength) findViewById(R.id.signal);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        textViewRound = (TextView) findViewById(R.id.textViewRound);
-        textViewSharp = (TextView) findViewById(R.id.textViewSharp);
-        progressTv = (TextView) findViewById(R.id.textView_p);
+        mTextViewRound = (TextView) findViewById(R.id.textViewRound);
+        mTextViewSharp = (TextView) findViewById(R.id.textViewSharp);
+        mProgressTv = (TextView) findViewById(R.id.textView_p);
 
-        aSwitch = (Switch) findViewById(R.id.switch1);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mSwitch = (Switch) findViewById(R.id.switch1);
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    signal.setTheme(SignalStrength.Theme.ROUNDED);
-                    textViewRound.setVisibility(View.VISIBLE);
-                    textViewSharp.setVisibility(View.GONE);
+                    mSignal.setTheme(SignalStrength.Theme.ROUNDED);
+                    mTextViewRound.setVisibility(View.VISIBLE);
+                    mTextViewSharp.setVisibility(View.GONE);
                 }else {
-                    signal.setTheme(SignalStrength.Theme.SHARP);
-                    textViewRound.setVisibility(View.GONE);
-                    textViewSharp.setVisibility(View.VISIBLE);
+                    mSignal.setTheme(SignalStrength.Theme.SHARP);
+                    mTextViewRound.setVisibility(View.GONE);
+                    mTextViewSharp.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -55,16 +54,16 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, R.string.reset_and_bye, Snackbar.LENGTH_LONG).setAction("Reset", listener).show();
+                Snackbar.make(view, R.string.reset_and_bye, Snackbar.LENGTH_LONG).setAction(getResources().getString(R.string.reset), listener).show();
             }
         });
 
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                signal.setSignalLevel(progress);
-                progressTv.setText(Integer.toString(progress)+PRO);
+                mSignal.setSignalLevel(progress);
+                mProgressTv.setText(progress + getResources().getString(R.string.percentages_sign));
             }
 
             @Override
@@ -79,22 +78,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         int val = 10;
-        signal.setSignalLevel(val);
-        seekBar.setProgress(val);
-        progressTv.setText(Integer.toString(val)+PRO);
+        mSignal.setSignalLevel(val);
+        mSeekBar.setProgress(val);
+        mProgressTv.setText(val + getResources().getString(R.string.percentages_sign));
     }
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             int val = 0;
-            signal.setSignalLevel(val);
-            seekBar.setProgress(val);
-            progressTv.setText(Integer.toString(val)+PRO);
-            aSwitch.setChecked(false);
-            textViewRound.setVisibility(View.VISIBLE);
-            textViewSharp.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this, "Reset Done!", Toast.LENGTH_SHORT).show();
+            mSignal.setSignalLevel(val);
+            mSeekBar.setProgress(val);
+            mProgressTv.setText(val + getResources().getString(R.string.percentages_sign));
+            mSwitch.setChecked(false);
+            mTextViewRound.setVisibility(View.VISIBLE);
+            mTextViewSharp.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.reset_done), Toast.LENGTH_SHORT).show();
         }};
 
     @Override
